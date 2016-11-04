@@ -35,6 +35,7 @@
       console.log("Setting user_id");
       localStorage.setItem('user_id', response.data.user.id);
       localStorage.setItem('token', response.data.token);
+      self.getUserAlbums();
       $state.go('home', {url: '/user-home', user: response.data.user});
     })
     .catch(function(err){
@@ -72,19 +73,19 @@
                     // ALBUMS CONTROLLER //
   // ======================================================== //
 
-    self.getAllAlbums = function(){
-      $http.get(`${rootUrl}/albums`)
-      .catch(function(err){
-        console.error(err);
-      })
-      .then(function(response){
-        self.allAlbums = response.data.albums
-        console.log(self.allAlbums);
-      })
-    }
+    // self.getAllAlbums = function(){
+    //   $http.get(`${rootUrl}/albums`)
+    //   .catch(function(err){
+    //     console.error(err);
+    //   })
+    //   .then(function(response){
+    //     self.allAlbums = response.data.albums
+    //     console.log(self.allAlbums);
+    //   })
+    // }
 
     self.getUserAlbums = function(){
-      $http.get(`${rootUrl}/user/${localStorage.getItem('user_id')}`)
+      $http.get(`${rootUrl}/users/${localStorage.getItem('user_id')}`)
       .catch(function(err){
         console.error(err);
       })
@@ -143,7 +144,6 @@
       });
     }
   // Call methods on load
-    this.getAllAlbums();
 
   // ======================================================== //
                   // PHOTOS CONTROLLER //

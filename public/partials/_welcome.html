@@ -31,22 +31,21 @@
 
             <div id="container">
               <main id="center" class="column">
-                <div ng-controller="usersController as users">
-                  <form id="loginInput"  ng-submit="users.login(userPass)">
+                  <form id="loginInput"  ng-submit="mainCtrl.login(userPass)">
                       <div class="input-field">
                           <input id="username" type="text" class="validate" ng-model="userPass.username">
                           <label for="username">Username</label>
-                        </div>
-                        </div>
+                      </div>
 
-                        <div class="input-field">
+                      <div class="input-field">
                           <input id="password" type="password" class="validate" ng-model="userPass.password">
                           <label for="password">Password</label>
-                        </div>
+                      </div>
 
                         <button id="loginButton" class="btn waves-effect waves-light" type="submit">Log in
                       </button>
                     </form>
+                  </div>
                   </div>
                  </div>
                </div>
@@ -61,7 +60,7 @@
         <div class="icon-block">
           <h2 class="center brown-text"><h2 id="signupCss">Sign Up</h2>
 
-          <div ng-controller="usersController as users">
+          <div ng-controller="mainController as users">
             <div class="row">
               <form class="col s12" ng-submit="users.signup(userPass)">
                 <div class="row">
