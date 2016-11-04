@@ -3,7 +3,7 @@
   <a ui-sref="new-album">Create New Album</a>
 
  <!-- <a class='dropdown-button btn' data-beloworigin="true" href='#' data-activates='dropdown1'>Albums</a> -->
-<div class="" ng-repeat="album in mainCtrl.albums">
+<div class="" ng-repeat="album in mainCtrl.userAlbums">
   <div class="">
     <h3>{{album.title}}</h3>
     <p>
@@ -11,15 +11,6 @@
     </p>
   </div>
 </div>
-
- <!-- Dropdown Structure -->
-  <ul id='dropdown1' class='dropdown-content'>
-   <li><a ui-sref="#">Album #1</a></li>
-   <li><a ui-sref="#">Album #2</a></li>
-   <li class="divider"></li>
-   <li><a ui-sref="#">Album #3</a></li>
-   <li><a ui-sref="#">Album #4</a></li>
- </ul>
 
       <!--==========** MAIN FOOTER **===========-->
           <footer class="page-footer black">

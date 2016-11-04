@@ -49,6 +49,7 @@
       self.user = response.data.user
       console.log(self.user);
       localStorage.setItem('user', JSON.stringify(response.data.user));
+      localStorage.setItem('user_id', response.data.user.id);
       localStorage.setItem('token', JSON.stringify(response.data.token));
       $state.go('home', {url: '/user-home', user: response.data.user});
     })
@@ -98,6 +99,7 @@
     self.createAlbum = function(album) {
       var token = JSON.stringify(localStorage.getItem('token')).replace(/"/g,"");
       console.log(token);
+      console.log(localStorage.getItem('user_id'));
       $http({
         method: 'POST',
         headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
