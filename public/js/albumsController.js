@@ -1,5 +1,6 @@
 (function(){
   angular.module('nitpic')
+<<<<<<< HEAD
     .controller('albumsController', albumsController);
 
 
@@ -29,6 +30,31 @@
 
     self.getUserAlbums = function(){
       $http.get(`${rootUrl}/user/${localStorage.getItem('user_id')}`)
+=======
+    .controller('mainController', mainController);
+
+
+  mainController.$inject = ['$scope', '$http', 'Upload', '$timeout', '$state', '$stateParams'];
+
+  function mainController($scope, $http, Upload, $timeout, $state, $stateParams){
+    var rootUrl = 'http://localhost:3000';
+    var self = this;
+
+    // Get all albums
+    self.getAllAlbums = function(){
+      $http.get(`${rootUrl}/user/${localStorage.getItem('user_id')}/albums`)
+      .catch(function(err){
+        console.error(err);
+      })
+      .then(function(response){
+        self.allAlbums = response.data.albums
+        console.log(self.allAlbums);
+      })
+    }
+    // Get all albums associated with user
+    self.getUserAlbums = function(){
+      $http.get(`${rootUrl}/albums/${localStorage.getItem('user_id')}`)
+>>>>>>> c7f70a164bfec245af664196e2903ce7f7c2bf4e
       .catch(function(err){
         console.error(err);
       })
@@ -73,10 +99,19 @@
         console.error(err);
       })
     }
+<<<<<<< HEAD
     $scope.uploadPhoto = function(image){
       console.log("Uploading...");
       image.upload = Upload.upload({
         url: rootUrl + '/photos',
+=======
+
+    // Upload photo method
+    $scope.uploadPhoto = function(image){
+      console.log("Uploading...");
+      image.upload = Upload.upload({
+        url: url + '/photos',
+>>>>>>> c7f70a164bfec245af664196e2903ce7f7c2bf4e
         data: {photo: {title: $scope.title, image: image}}
       })
       .then(function(response){
@@ -89,7 +124,14 @@
     }
 
     // Call methods on load
+<<<<<<< HEAD
     // this.getAlbums();
 
   }
 })()
+=======
+    // this.getAllAlbums();
+  }
+})()
+console.log("mainController.js");
+>>>>>>> c7f70a164bfec245af664196e2903ce7f7c2bf4e

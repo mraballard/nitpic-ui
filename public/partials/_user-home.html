@@ -1,23 +1,25 @@
 
-<div class="row center">
+<div class="row center" ng-controller="mainController as mainCtrl">
+  <a ui-sref="new-album">Create New Album</a>
 
-<div class="row center" ng-controller="albumsController as albumCtrl">
+ <!-- <a class='dropdown-button btn' data-beloworigin="true" href='#' data-activates='dropdown1'>Albums</a> -->
+<div class="" ng-repeat="album in mainCtrl.albums">
+  <div class="">
+    <h3>{{album.title}}</h3>
+    <p>
+      {{album.description}}
+    </p>
+  </div>
+</div>
 
-    <h3>Your Albums</h3>
-        <div>
-          <form id="addInput" ng-submit="albumCtrl.createAlbum(album)">
-              <div class="input-field">
-                <input id="album" placeholder="Album Title" type="text" class="validate" ng-model="album.title">
-                <input id="album" placeholder="Album Description" type="text" class="validate" ng-model="album.description">
-                <label for="album"></label>
-              </div>
-            <button class="btn waves-effect waves-light" type="submit" name="action">Add Album<i class="material-icons right">send</i>
-            </button>
-          </form>
-        </div>
-      </div>
-
-
+ <!-- Dropdown Structure -->
+  <ul id='dropdown1' class='dropdown-content'>
+   <li><a ui-sref="#">Album #1</a></li>
+   <li><a ui-sref="#">Album #2</a></li>
+   <li class="divider"></li>
+   <li><a ui-sref="#">Album #3</a></li>
+   <li><a ui-sref="#">Album #4</a></li>
+ </ul>
 
       <!--==========** MAIN FOOTER **===========-->
           <footer class="page-footer black">
@@ -25,5 +27,4 @@
                 <div class="col l6 s12">
       </footer>
 
- </div> <!-- Close Container div -->
 </div> <!-- Close Ctrl div -->

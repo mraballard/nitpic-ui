@@ -1,0 +1,15 @@
+<div id="container" ng-controller="mainController as mainCtrl">
+    <form id="createAlbum" ng-submit="mainCtrl.createAlbum(newAlbum)">
+        <div class="input-field">
+           <label for="title">Title</label>
+            <input id="title" type="text" ng-model="newAlbum.title">
+        </div>
+        <div class="input-field">
+           <label for="description">Description</label>
+            <input id="description" type="text" ng-model="newAlbum.description">
+        </div>
+
+        <button id="newAlbumButton" class="btn waves-effect waves-light" type="submit">Create Album
+        </button>
+    </form>
+</div> <!-- Close Container div -->
