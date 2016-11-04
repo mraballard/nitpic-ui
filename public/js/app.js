@@ -9,11 +9,15 @@
       $stateProvider
         .state('welcome', {
           url: '/',
-          templateUrl: '../partials/_welcome.html'
+          templateUrl: '../partials/_welcome.html',
+          // params : {
+          //   user: null,
+          //   album: null
+          // }
         })
          .state('home', {
           url: '/user-home',
-          templateUrl: '../partials/_user-home.html'
+          templateUrl: '../partials/_user-home.html',
         })
         .state('gallery', {
           url: '/gallery',
@@ -22,8 +26,6 @@
         .state('album-show', {
           url: '/album-show',
           templateUrl: '../partials/_album-show.html',
-          // controller: 'mainController',
-          // controllerAs: 'album'
         })
         .state('new-album', {
          url: '/new-album',
@@ -38,9 +40,12 @@
           templateUrl: '../partials/_contact.html'
         })
 
-
         $urlRouterProvider.otherwise('/');
 
+        $locationProvider.html5Mode({
+          enabled: true,
+          requireBase: false
+        });
       }
 
 })()

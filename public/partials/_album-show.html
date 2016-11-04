@@ -1,4 +1,7 @@
 <!-- <div class="album" ng-controller="mainController as album"> -->
+
+  <h4>{{maintCtrl.thisAlbum.title}}</h4>
+
   <form name="myForm">
     <label>Title:</label>
     <input type="text" name="title" ng-model="title"/><br>
@@ -9,4 +12,6 @@
     <button ng-disabled="!myForm.$valid"
               ng-click="uploadPhoto(image)">Submit</button>
   </form>
+
+  <h6>{{mainCtrl.thisAlbum.description}}</h6>
 <!-- </div> -->

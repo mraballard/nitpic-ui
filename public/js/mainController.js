@@ -31,8 +31,6 @@
     $http.post(`${rootUrl}/users/login`, {user: {username: userPass.username, password: userPass.password}})
     .then(function(response){
       self.user = response.data.user
-      console.log(self.user);
-      console.log("Setting user_id");
       localStorage.setItem('user_id', response.data.user.id);
       localStorage.setItem('token', response.data.token);
       console.log("calling getUserAlbums");
@@ -116,12 +114,12 @@
             }
         }
       })
+      .then(function(response){
+        self.thisAlbum = response.data.album;
+        $state.go('album-show', {url: '/album-show', album: response.data.album});
+      })
       .catch(function(err){
         console.error(err);
-      })
-      .then(function(response){
-        console.log(response);
-        $state.go('home', {url: '/user-home'});
       })
     }
 
