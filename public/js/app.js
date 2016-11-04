@@ -29,6 +29,10 @@
           url: '/photo-show',
           templateUrl: '../partials/_photo-show.html'
         })
+        .state('contact', {
+          url: '/contact',
+          templateUrl: '../partials/_contact.html'
+        })
 
 
         $urlRouterProvider.otherwise('/');
