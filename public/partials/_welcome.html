@@ -49,20 +49,16 @@
                   </div>
                  </div>
                </div>
-
         </div>
       </div>
-
-
-
 
       <div class="col s12 m4">
         <div class="icon-block">
           <h2 class="center brown-text"><h2 id="signupCss">Sign Up</h2>
 
-          <div ng-controller="mainController as users">
+          <div>
             <div class="row">
-              <form class="col s12" ng-submit="users.signup(userPass)">
+              <form class="col s12" ng-submit="mainCtrl.signup(userPass)">
                 <div class="row">
                   <div class="input-field col s12">
                     <label for="username">username</label>
