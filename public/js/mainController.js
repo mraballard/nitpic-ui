@@ -35,6 +35,7 @@
       console.log("Setting user_id");
       localStorage.setItem('user_id', response.data.user.id);
       localStorage.setItem('token', response.data.token);
+      console.log("calling getUserAlbums");
       self.getUserAlbums();
       $state.go('home', {url: '/user-home', user: response.data.user});
     })
@@ -48,7 +49,7 @@
     .then(function(response) {
       self.user = response.data.user
       console.log(self.user);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
+      localStorage.setItem('user_id', JSON.stringify(response.data.user.id));
       localStorage.setItem('token', JSON.stringify(response.data.token));
       $state.go('home', {url: '/user-home', user: response.data.user});
     })
@@ -59,15 +60,12 @@
   // Logout
   self.logout = function() {
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem('user_id');
     $state.go('welcome', {url: '/'});
   }
 ///////// AUTHORIZATION END //////////
 
 ///////// CREATE ALBUMS  BEGIN //////////
-
-
-  self.getUsers();
 
   // ======================================================== //
                     // ALBUMS CONTROLLER //
@@ -85,11 +83,18 @@
     // }
 
     self.getUserAlbums = function(){
-      $http.get(`${rootUrl}/users/${localStorage.getItem('user_id')}`)
+      var token = JSON.stringify(localStorage.getItem('token')).replace(/"/g,"");
+      console.log(token);
+      $http({
+        method: 'GET',
+        headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
+        url: `${rootUrl}/users/${localStorage.getItem('user_id')}`
+      })
       .catch(function(err){
         console.error(err);
       })
       .then(function(response){
+        console.log(response);
         self.userAlbums = response.data.albums
         console.log(self.userAlbums);
       })
