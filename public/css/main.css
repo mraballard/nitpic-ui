@@ -3,6 +3,24 @@ body {
   background: -webkit-linear-gradient(to left, #8e9eab , #eef2f3); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to left, #8e9eab , #eef2f3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   font-family: 'Bungee Inline', cursive;
+  /*background-image: url('http://i68.tinypic.com/161x64z.jpg');*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#signupCss {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+#loginCss {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
 }
 #logo {
   width: 6em;
@@ -10,36 +28,17 @@ body {
   border: 3px solid white;
   border-radius: 20px;
   margin-left: 5px;
+  margin-top: 10px;
 }
-/*#welcomePic {
-  position:relative;
-
-   width: 100%;
-   height: 100%;
+/*.layer {
+  background-color: rgba(150, 247, 216, 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }*/
-.layer {
-    background-color: rgba(150, 247, 216, 0.3);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-#apps {
-  width: 20em;
-  border:10px solid rgba(20,20,50,.3);
-  border-radius: 20px;
-}
-#apps:hover {
-  transform: scale(1.02);
-  box-shadow: 7px 7px 7px 2px rgba(20,20,20,.3) ;
-}
-#appCol {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+
 .navHov {
   color: white;
 
@@ -54,6 +53,7 @@ span.portText {
   font-family: 'Shadows Into Light', cursive;
   font-size: 2em;
   text-shadow: 2px 2px 6px black;
+  margin-top: 10px;
 }
 
 #dropdown1 {
@@ -76,7 +76,7 @@ footer.index-footer {
   margin: 0;
   position: absolute;
   right: 0;
-  bottom: 0;
+  /*bottom: 0;*/
   left: 0;
   padding: 1rem;
 }
@@ -99,14 +99,13 @@ p {
   line-height: 0;
   height: auto;
   color: rgba(255,255,255,.9);
+
 }
   .custom-container .section {
     width: 100%;
   }
 
-  #index-banner .section {
-    top: 10%;
-  }
+
 @media only screen and (max-width :800px) {
   #index-banner .section {
     top: 0;

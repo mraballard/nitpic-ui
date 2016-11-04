@@ -36,3 +36,6 @@
       }
 
 })()
+
+
+console.log("app.js");

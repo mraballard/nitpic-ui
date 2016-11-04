@@ -1,61 +1,133 @@
 
 
-<img id="welcomePic" src="http://i68.tinypic.com/161x64z.jpg">
-<div class="layer">
-
-  <div id="loginCss">
-    <br>
-    <br>
-    <br>
-  <h2 id="login">Login</h2>
-
-    <div id="container">
-      <main id="center" class="column">
-        <div ng-controller="usersController as users">
-          <form id="loginInput"  ng-submit="users.login(userPass)">
-              <div class="input-field">
-                  <input id="username" type="username" ng-model="userPass.username">
-                  <label for="username">Email</label>
-              </div>
-              <div class="input-field">
-                <input id="password" type="password" ng-model="userPass.password">
-                <label for="password">Password</label>
-              </div>
-
-              <button id="loginButton" class="btn waves-effect waves-light" type="submit">Log in
-              </button>
-          </form>
+<body>
+<!-- <div class="layer">
+</div> -->
+<div id="index-banner" class="custom-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br><br>
+      <h1 class="header center teal-text text-lighten-2">NITPIC</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">THE PLACE WHERE YOU CAN NITPICK THE PICS YOU PICK TO NITPIC.</h5>
       </div>
+
+      <br><br>
+
     </div>
   </div>
+
+  <div class="parallax"><img src="bg-cta.jpg" alt="Unsplashed background img 1"></div>
 </div>
 
-     <h2 id="signupCss">Sign Up</h2>
 
-     <div ng-controller="usersController as users">
-       <div class="row">
-         <form class="col s12" ng-submit="users.signup(userPass)">
-           <div class="row">
-             <div class="input-field col s12">
-               <label for="username">username</label>
-               <input id="username" type="username" ng-model="userPass.username">
+<div class="container">
+  <div class="section">
 
-             </div>
-           </div>
-           <div class="row">
-             <div class="input-field col s12">
-               <label for="password">Password</label>
-               <input id="password" type="password" ng-model="userPass.password">
+    <!--   Icon Section   -->
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <div id="loginCss">
+          <h2 id="login">Login</h2>
 
-             </div>
-           </div>
+            <div id="container">
+              <main id="center" class="column">
+                <div ng-controller="usersController as users">
+                  <form id="loginInput"  ng-submit="users.login(userPass)">
+                      <div class="input-field">
+                          <input id="username" type="text" class="validate" ng-model="userPass.username">
+                          <label for="username">Username</label>
+                        </div>
+                        </div>
 
-           <button class="btn waves-effect waves-light" type="submit">Sign up
-             <!-- <i class="material-icons right">send</i> -->
-           </button>
-         </form>
-       </div>
+                        <div class="input-field">
+                          <input id="password" type="password" class="validate" ng-model="userPass.password">
+                          <label for="password">Password</label>
+                        </div>
+
+                        <button id="loginButton" class="btn waves-effect waves-light" type="submit">Log in
+                      </button>
+                    </form>
+                  </div>
+                 </div>
+               </div>
+
+        </div>
       </div>
+
+
+
+
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center brown-text"><h2 id="signupCss">Sign Up</h2>
+
+          <div ng-controller="usersController as users">
+            <div class="row">
+              <form class="col s12" ng-submit="users.signup(userPass)">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <label for="username">username</label>
+                    <input id="username" type="text" ng-model="userPass.username">
+
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" ng-model="userPass.password">
+
+                  </div>
+                </div>
+
+
+                <button class="btn waves-effect waves-light" type="submit">Sign up
+                  <!-- <i class="material-icons right">send</i> -->
+                </button>
+              </form>
+            </div>
+          </div>
+       </div>
+     </div>
+    </div>
+  </div>
+
 
 
 </main>
+<!--==========** MAIN FOOTER **===========-->
+    <footer class="index-footer black">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">About Nitpic</h5>
+            <p class="grey-text text-lighten-4">Learn about the creators of NITPIC</p>
+
+  <!--==========** FOOTER LINKS **===========-->
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+            <!-- FACEBOOK -->
+            <a target="_blank" title="follow me on facebook" href="#"><img alt="follow us on facebook" src="https://c866088.ssl.cf3.rackcdn.com/assets/facebook30x30.png" border=0></a>
+            <!-- TWITTER -->
+              <a target="_blank" title="follow us on Twitter" href="#"><img alt="follow us on Twitter" src="https://c866088.ssl.cf3.rackcdn.com/assets/twitter30x30.png" border=0></a>
+            <!-- YOUTUBE  -->
+            <a target="_blank" title="follow us on youtube" href="#"><img alt="follow us on youtube" src="https://c866088.ssl.cf3.rackcdn.com/assets/youtube30x30.png" border=0></a>
+            <!-- INSTAGRAM -->
+            <a target="_blank" title="follow us on instagram" href="#"><img alt="follow us on instagram" src="https://c866088.ssl.cf3.rackcdn.com/assets/instagram30x30.png" border=0></a>
+        </div>
+        <div class="col l3 s12">
+      </div>
+
+<!--FOOTER -->
+  <div class="footer-wrapper col 6 s12">
+    <div class="footer-copyright">
+      <div class="container white-text"> Created by  <a class="brown-text text-lighten-3"  href="https://github.com/estermer/nitpic-ui"> Aaron, Eric & Sean </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

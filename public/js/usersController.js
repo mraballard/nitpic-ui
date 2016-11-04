@@ -2,6 +2,8 @@
   angular.module('nitpic')
     .controller('usersController', usersController);
 
+  usersController.$inject = ['$http', '$state', '$stateParams'];
+
   function usersController($http, $state, $stateParams){
     var rootUrl = "http://localhost:3000";
     var self = this;
@@ -21,13 +23,12 @@
     // User login
     self.login = function(userPass){
       $http.post(`${rootUrl}/users/login`, {user: {username: userPass.username, password: userPass.password}})
-      .catch(function(err){
-        console.error(err);
-      })
       .then(function(response){
         self.user = response.data.user
-        localStorage.setItem('user_id', JSON.stringify(response.data.user_id));
-        localStorage.setItem('token', JSON.stringify(response.data.token));
+        console.log(self.user);
+        console.log("Setting user_id");
+        localStorage.setItem('user_id', response.data.user.id);
+        localStorage.setItem('token', response.data.token);
         $state.go('home', {url: '/user-home', user: response.data.user});
       })
       .catch(function(err){
@@ -37,12 +38,10 @@
     // Signup
     self.signup = function(userPass){
       $http.post(`${rootUrl}/users`, {user: {username: userPass.username, password: userPass.password }})
-      .catch(function(err){
-        console.error(err);
-      })
       .then(function(response) {
         self.user = response.data.user
-        localStorage.setItem('user_id', JSON.stringify(response.data.user_id));
+        console.log(self.user);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
         localStorage.setItem('token', JSON.stringify(response.data.token));
         $state.go('home', {url: '/user-home', user: response.data.user});
       })
@@ -51,8 +50,9 @@
       });
     }
     // Logout
-    self.logout = function(userPass) {
+    self.logout = function() {
       localStorage.removeItem('token');
+      localStorage.removeItem('user');
       $state.go('welcome', {url: '/'});
     }
 ///////// AUTHORIZATION END //////////
