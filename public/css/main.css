@@ -1,11 +1,17 @@
+html {
+  background-color: #8e9eab;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background: #8e9eab; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #8e9eab , #eef2f3); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #8e9eab , #eef2f3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /*background: #8e9eab; /* fallback for old browsers */
+  /*background: -webkit-linear-gradient(to left, #8e9eab , #eef2f3); /* Chrome 10-25, Safari 5.1-6 */
+  /*background: linear-gradient(to left, #8e9eab , #eef2f3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   font-family: 'Bungee Inline', cursive;
   /*background-image: url('http://i68.tinypic.com/161x64z.jpg');*/
-  background-repeat: no-repeat;
-  background-size: cover;
+  /*background-repeat: no-repeat;
+  background-size: cover;*/
   height: 100%;
   margin: 0;
   padding: 0;
@@ -48,6 +54,7 @@ body {
   border: 1px solid white;
 
 }
+
 span.portText {
   margin-top: 10px;
   font-family: 'Shadows Into Light', cursive;
