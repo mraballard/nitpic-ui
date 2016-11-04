@@ -3,9 +3,9 @@
     .config(AuthRouter);
 
 
-    AuthRouter.$inject = ['$stateProvider', '$urlRouterProvider']
+    AuthRouter.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider']
 
-    function AuthRouter($stateProvider, $urlRouterProvider) {
+    function AuthRouter($stateProvider, $urlRouterProvider, $locationProvider) {
       $stateProvider
         .state('welcome', {
           url: '/',
@@ -14,14 +14,6 @@
           //   user: null,
           //   album: null
           // }
-        })
-        .state('signup', {
-          url: '/signup',
-          templateUrl: '../partials/_signup.html'
-        })
-        .state('login', {
-          url: '/login',
-          templateUrl: '../partials/_login.html'
         })
          .state('home', {
           url: '/user-home',
