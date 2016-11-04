@@ -6,22 +6,27 @@
   albumsController.$inject = ['$scope', '$http', 'Upload', '$timeout'];
 
   function albumsController($scope, $http, Upload, $timeout, $state, $stateParams){
-    var url = 'http://localhost:3000';
+    var rootUrl = 'http://localhost:3000';
 
-    self.getAlbums = function(){
+    // self.getAlbums = function(){
       $http.get(`${rootUrl}/albums`)
+      .then(function(response){
+        if(response.data){
+          self.albums = response.data.albums;
+        } else {
+          self.albums = {};
+        }
+      })
       .catch(function(err){
         console.error(err);
       })
-      .then(function(response){
-        self.albums = response.data.albums
-      })
-    }
+
+    // }
 
     $scope.uploadPhoto = function(image){
       console.log("Uploading...");
       image.upload = Upload.upload({
-        url: url + '/photos',
+        url: rootUrl + '/photos',
         data: {photo: {title: $scope.title, image: image}}
       })
       .then(function(response){
@@ -33,6 +38,6 @@
     }
 
     // Call methods on load
-    this.getAlbums();
+    // this.getAlbums();
   }
 })()
