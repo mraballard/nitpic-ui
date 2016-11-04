@@ -103,6 +103,7 @@
     self.createAlbum = function(album) {
       var token = JSON.stringify(localStorage.getItem('token')).replace(/"/g,"");
       console.log(token);
+      console.log(localStorage.getItem('user_id'));
       $http({
         method: 'POST',
         headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
