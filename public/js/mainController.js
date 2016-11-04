@@ -9,7 +9,8 @@
   function mainController($scope, $http, Upload, $timeout, $state, $stateParams){
     var rootUrl = 'http://localhost:3000';
     var self = this;
-
+    self.thisAlbum = $stateParams.album
+    console.log('self', self)
   // ======================================================== //
                   // USERS CONTROLLER //
   // ======================================================== //
@@ -33,7 +34,6 @@
       self.user = response.data.user
       localStorage.setItem('user_id', response.data.user.id);
       localStorage.setItem('token', response.data.token);
-      console.log("calling getUserAlbums");
       self.getUserAlbums();
       $state.go('home', {url: '/user-home', user: response.data.user});
     })
@@ -82,7 +82,6 @@
 
     self.getUserAlbums = function(){
       var token = JSON.stringify(localStorage.getItem('token')).replace(/"/g,"");
-      console.log(token);
       $http({
         method: 'GET',
         headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
@@ -92,16 +91,12 @@
         console.error(err);
       })
       .then(function(response){
-        console.log(response);
         self.userAlbums = response.data.albums
-        console.log(self.userAlbums);
       })
     }
 
     self.createAlbum = function(album) {
       var token = JSON.stringify(localStorage.getItem('token')).replace(/"/g,"");
-      console.log(token);
-      console.log(localStorage.getItem('user_id'));
       $http({
         method: 'POST',
         headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
@@ -116,8 +111,9 @@
         }
       })
       .then(function(response){
+        debugger;
         self.thisAlbum = response.data.album;
-        $state.go('album-show', {url: '/album-show', album: response.data.album});
+        $state.go('album-show', {album: album});
       })
       .catch(function(err){
         console.error(err);
@@ -128,14 +124,12 @@
       $http.get(`${rootUrl}/users/${localStorage.getItem('user_id')}/albums/${albumId}`)
       .then(function(response){
         album = response.data.album;
-        console.log(album);
       })
       .catch(function(err){
         console.error(err);
       })
     }
     $scope.uploadPhoto = function(image){
-      console.log("Uploading...");
       image.upload = Upload.upload({
         url: url + '/photos',
         data: {photo: {title: $scope.title, image: image}}

@@ -15,6 +15,14 @@
           //   album: null
           // }
         })
+        .state('signup', {
+          url: '/signup',
+          templateUrl: '../partials/_signup.html'
+        })
+        .state('login', {
+          url: '/login',
+          templateUrl: '../partials/_login.html'
+        })
          .state('home', {
           url: '/user-home',
           templateUrl: '../partials/_user-home.html',
@@ -26,6 +34,9 @@
         .state('album-show', {
           url: '/album-show',
           templateUrl: '../partials/_album-show.html',
+          params :{
+            album: null
+          }
         })
         .state('new-album', {
          url: '/new-album',
@@ -38,14 +49,14 @@
         .state('contact', {
           url: '/contact',
           templateUrl: '../partials/_contact.html'
-        })
+        });
 
         $urlRouterProvider.otherwise('/');
 
-        $locationProvider.html5Mode({
-          enabled: true,
-          requireBase: false
-        });
+      //   $locationProvider.html5Mode({
+      //     enabled: true,
+      //     requireBase: false
+      //   });
       }
 
 })()
