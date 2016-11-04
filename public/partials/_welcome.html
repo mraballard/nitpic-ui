@@ -1,8 +1,3 @@
-
-
-<body>
-<!-- <div class="layer">
-</div> -->
 <div id="index-banner" class="custom-container">
   <div class="section no-pad-bot">
     <div class="container">
@@ -14,113 +9,47 @@
 
       <br><br>
 
+      <div class="center container">
+        <div class="section">
+          <!-- ADD two buttons to link to signup and login views -->
+          <button class="btn waves-effect waves-light" ui-sref="signup" >Signup</button>
+          <button class="btn waves-effect waves-light" ui-sref="login">Login</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
-
-
-<div class="container">
-  <div class="section">
-
-    <!--   Icon Section   -->
-    <div class="row">
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <div id="loginCss">
-          <h2 id="login">Login</h2>
-
-            <div id="container">
-              <main id="center" class="column">
-                  <form id="loginInput"  ng-submit="mainCtrl.login(userPass)">
-                      <div class="input-field">
-                          <input id="username" type="text" class="validate" ng-model="userPass.username">
-                          <label for="username">Username</label>
-                      </div>
-
-                      <div class="input-field">
-                          <input id="password" type="password" class="validate" ng-model="userPass.password">
-                          <label for="password">Password</label>
-                      </div>
-
-                        <button id="loginButton" class="btn waves-effect waves-light" type="submit">Log in
-                      </button>
-                    </form>
-                  </div>
-                  </div>
-                 </div>
-               </div>
-        </div>
-      </div>
-
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <h2 class="center brown-text"><h2 id="signupCss">Sign Up</h2>
-
-          <div>
-            <div class="row">
-              <form class="col s12" ng-submit="mainCtrl.signup(userPass)">
-                <div class="row">
-                  <div class="input-field col s12">
-                    <label for="username">username</label>
-                    <input id="username" type="text" ng-model="userPass.username">
-
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <label for="password">Password</label>
-                    <input id="password" type="password" ng-model="userPass.password">
-
-                  </div>
-                </div>
-
-
-                <button class="btn waves-effect waves-light" type="submit">Sign up
-                  <!-- <i class="material-icons right">send</i> -->
-                </button>
-              </form>
-            </div>
-          </div>
-       </div>
-     </div>
-    </div>
-  </div>
-
-
-
-</main>
 <!--==========** MAIN FOOTER **===========-->
-    <footer class="index-footer black">
-      <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5 class="white-text">About Nitpic</h5>
-            <p class="grey-text text-lighten-4">Learn about the creators of NITPIC</p>
-
+<footer class="index-footer black">
+  <!-- <div class="container"> -->
+  <div class="row">
+    <div class="col l6 s12">
+        <h5 class="white-text">About Nitpic</h5>
+        <p class="grey-text text-lighten-4">Learn about the creators of NITPIC</p>
+    </div>
   <!--==========** FOOTER LINKS **===========-->
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-            <!-- FACEBOOK -->
-            <a target="_blank" title="follow me on facebook" href="#"><img alt="follow us on facebook" src="https://c866088.ssl.cf3.rackcdn.com/assets/facebook30x30.png" border=0></a>
-            <!-- TWITTER -->
-              <a target="_blank" title="follow us on Twitter" href="#"><img alt="follow us on Twitter" src="https://c866088.ssl.cf3.rackcdn.com/assets/twitter30x30.png" border=0></a>
-            <!-- YOUTUBE  -->
-            <a target="_blank" title="follow us on youtube" href="#"><img alt="follow us on youtube" src="https://c866088.ssl.cf3.rackcdn.com/assets/youtube30x30.png" border=0></a>
-            <!-- INSTAGRAM -->
-            <a target="_blank" title="follow us on instagram" href="#"><img alt="follow us on instagram" src="https://c866088.ssl.cf3.rackcdn.com/assets/instagram30x30.png" border=0></a>
-        </div>
-        <div class="col l3 s12">
-      </div>
+
+    <div class="col l3 s12">
+      <h5 class="white-text">Connect</h5>
+        <!-- FACEBOOK -->
+        <a target="_blank" title="follow me on facebook" href="#"><img alt="follow us on facebook" src="https://c866088.ssl.cf3.rackcdn.com/assets/facebook30x30.png" border=0></a>
+        <!-- TWITTER -->
+        <a target="_blank" title="follow us on Twitter" href="#"><img alt="follow us on Twitter" src="https://c866088.ssl.cf3.rackcdn.com/assets/twitter30x30.png" border=0></a>
+        <!-- YOUTUBE  -->
+        <a target="_blank" title="follow us on youtube" href="#"><img alt="follow us on youtube" src="https://c866088.ssl.cf3.rackcdn.com/assets/youtube30x30.png" border=0></a>
+        <!-- INSTAGRAM -->
+        <a target="_blank" title="follow us on instagram" href="#"><img alt="follow us on instagram" src="https://c866088.ssl.cf3.rackcdn.com/assets/instagram30x30.png" border=0></a>
+    </div>
+    <div class="col l3 s12">
+    </div>
 
 <!--FOOTER -->
-  <div class="footer-wrapper col 6 s12">
-    <div class="footer-copyright">
-      <div class="container white-text"> Created by  <a class="brown-text text-lighten-3"  href="https://github.com/estermer/nitpic-ui"> Aaron, Eric & Sean </a>
+    <div class="footer-wrapper col 6 s12">
+      <div class="footer-copyright">
+        <div class="container white-text"> Created by  <a class="brown-text text-lighten-3"  href="https://github.com/estermer/nitpic-ui"> Aaron, Eric & Sean </a>
+        </div>
       </div>
     </div>
-  </footer>
-
-</body>
-
-</html>
+  </div>
+</footer>
