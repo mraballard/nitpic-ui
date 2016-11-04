@@ -21,74 +21,11 @@
 
 <div class="container">
   <div class="section">
-
-    <!--   Icon Section   -->
-    <div class="row">
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <div id="loginCss">
-          <h2 id="login">Login</h2>
-
-            <div id="container">
-              <main id="center" class="column">
-                  <form id="loginInput"  ng-submit="mainCtrl.login(userPass)">
-                      <div class="input-field">
-                          <input id="username" type="text" class="validate" ng-model="userPass.username">
-                          <label for="username">Username</label>
-                      </div>
-
-                      <div class="input-field">
-                          <input id="password" type="password" class="validate" ng-model="userPass.password">
-                          <label for="password">Password</label>
-                      </div>
-
-                        <button id="loginButton" class="btn waves-effect waves-light" type="submit">Log in
-                      </button>
-                    </form>
-                  </div>
-                  </div>
-                 </div>
-               </div>
-
-        </div>
-      </div>
-
-
-
-
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <h2 class="center brown-text"><h2 id="signupCss">Sign Up</h2>
-
-          <div ng-controller="mainController as users">
-            <div class="row">
-              <form class="col s12" ng-submit="users.signup(userPass)">
-                <div class="row">
-                  <div class="input-field col s12">
-                    <label for="username">username</label>
-                    <input id="username" type="text" ng-model="userPass.username">
-
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <label for="password">Password</label>
-                    <input id="password" type="password" ng-model="userPass.password">
-
-                  </div>
-                </div>
-
-
-                <button class="btn waves-effect waves-light" type="submit">Sign up
-                  <!-- <i class="material-icons right">send</i> -->
-                </button>
-              </form>
-            </div>
-          </div>
-       </div>
-     </div>
-    </div>
+    <!-- ADD two buttons to link to signup and login views -->
+    <button ui-sref="signup" >Signup</button>
+    <button ui-sref="login">Login</button>
   </div>
+</div>
 
 
 

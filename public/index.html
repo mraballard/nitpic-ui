@@ -5,9 +5,6 @@
     <title>NITPIC</title>
 
 
-
-
-
     <!--********************* CSS **********************-->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
@@ -36,8 +33,11 @@
     <!--==========**HEADER===========-->
     <nav class="black">
     <div class="header-wrapper col l6 s12">
-      <a ui-sref="home"><img id='logo' src="./img/NITPIC.png"></a>
 
+      <!-- duplicate the two links ag do an ng-show hide based on
+            a users login to reference user home if logged in
+            or welcome home when not logged in-->
+      <a ui-sref="home"><img id='logo' src="./img/NITPIC_tiny.png"></a>
       <a ui-sref="home" class="brand-logo black"><span class="portText">NITPIC</span></a>
 
 
