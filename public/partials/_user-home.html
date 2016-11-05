@@ -1,5 +1,5 @@
 <div class="row center">
-    <a ui-sref="new-album">Create New Album</a>
+    <a ng-if="mainCtrl.isUser" ui-sref="new-album">Create New Album</a>
    <!-- <a class='dropdown-button btn' data-beloworigin="true" href='#' data-activates='dropdown1'>Albums</a> -->
   <div class="" ng-repeat="album in mainCtrl.userAlbums">
     <div class="" ng-click="mainCtrl.showAlbum(album)">

@@ -15,6 +15,14 @@
                   // USERS CONTROLLER //
   // ======================================================== //
 
+  self.currentUserCheck = function(userId) {
+    if (localStorage.user_id == userId.toString()) {
+      self.isUser = true;
+    }
+    else {
+      self.isUser = false;
+    }
+  }
   // Get all users from backend
   self.getUsers = function(){
     $http.get(`${rootUrl}/users`)
@@ -32,7 +40,7 @@
       self.user = response.data.user
       localStorage.setItem('user_id', response.data.user.id);
       localStorage.setItem('token', response.data.token);
-      self.getUserAlbums();
+      self.getUserAlbums(self.user.id);
       $state.go('home', {url: '/user-home', user: response.data.user});
     })
     .catch(function(err){
@@ -44,9 +52,9 @@
     $http.post(`${rootUrl}/users`, {user: {username: userPass.username, password: userPass.password }})
     .then(function(response) {
       self.user = response.data.user
-      console.log(self.user);
       localStorage.setItem('user_id', JSON.stringify(response.data.user.id));
       localStorage.setItem('token', JSON.stringify(response.data.token));
+      self.getUserAlbums(self.user.id);
       $state.go('home', {url: '/user-home', user: response.data.user});
     })
     .catch(function(err) {
@@ -78,17 +86,19 @@
     // }
 
     self.getUserAlbums = function(userId){
-      var token = JSON.stringify(localStorage.getItem('token')).replace(/"/g,"");
+      self.currentUserCheck(userId);
       $http({
         method: 'GET',
         headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
         url: `${rootUrl}/users/${userId}`
       })
+      .then(function(response){
+        console.log(response);
+        self.userAlbums = response.data.albums
+        $state.go('home');
+      })
       .catch(function(err){
         console.error(err);
-      })
-      .then(function(response){
-        self.userAlbums = response.data.albums
       })
     }
 
@@ -140,6 +150,7 @@
     }
 
     self.showAlbum = function(album) {
+      self.currentUserCheck(album.user_id);
       $http.get(`${rootUrl}/albums/${album.id}`)
       .then(function(response){
         self.getAlbumOwner(album.user_id);
@@ -177,17 +188,10 @@
       })
       .then(function(response){
         console.log(response);
-        self.getUserAlbums();
+        self.getUserAlbums(self.user.id);
         $state.go('home');
       });
     }
-
-
-
-
-
-
-
 
 
 

@@ -40,7 +40,7 @@
         <a ui-sref="welcome" class="center brand-logo black"><span class="portText">NITPIC</span></a>
 
         <ul ng-if="mainCtrl.user" id="nav-mobile" class="wh right hide-on-med-and-down">
-          <li><a class="navHov" ui-sref="home" ng-click="mainCtrl.getUserAlbums()">Home</a></li>
+          <li><a class="navHov" ui-sref="home" ng-click="mainCtrl.getUserAlbums(mainCtrl.user.id)">Home</a></li>
           <li><a class="navHov" ui-sref="gallery" ng-click="mainCtrl.getUsers()">Gallery</a></li>
           <li><a class="navHov" ui-sref="contact">Contact</a></li>
           <li><a class="navHov" ui-sref="welcome" ng-click="mainCtrl.logout()">Logout</a></li>

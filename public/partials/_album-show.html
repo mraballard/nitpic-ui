@@ -7,7 +7,7 @@
   </p>
   <h6>{{mainCtrl.thisAlbum.id}}</h6>
   <h5>Created by: {{mainCtrl.thisAlbumOwner.username}}</h5>
-
+<div ng-if="mainCtrl.isUser">
   <form name="myForm">
     <label>Title:</label>
     <input type="text" name="title" ng-model="title"/><br>
@@ -18,6 +18,10 @@
     <button ng-disabled="!myForm.$valid"
               ng-click="uploadPhoto(image)">Submit</button>
   </form>
-<h4 ui-sref="album-update">Change Title / Description</h4>
-<h5 ng-click="mainCtrl.deleteAlbum(mainCtrl.thisAlbum)">Delete this Album</h5>
+  <hr>
+  <h4 ui-sref="album-update">Change Title / Description</h4>
+  <h5 ng-click="mainCtrl.deleteAlbum(mainCtrl.thisAlbum)">Delete this Album</h5>
+</div>
+
+
 <!-- </div> -->
