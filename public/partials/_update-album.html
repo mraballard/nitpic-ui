@@ -1,0 +1,15 @@
+<div id="container">
+    <form id="updateAlbum" ng-submit="mainCtrl.updateAlbum(album,mainCtrl.thisAlbum.id)">
+        <div class="input-field">
+           <label for="title">Title</label>
+            <input id="title" type="text" ng-model="album.title">
+        </div>
+        <div class="input-field">
+           <label for="description">Description</label>
+            <input id="description" type="text" ng-model="album.description">
+        </div>
+
+        <button id="updateAlbumButton" class="btn waves-effect waves-light" type="submit">Update Album
+        </button>
+    </form>
+</div> <!-- Close Container div -->

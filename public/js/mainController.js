@@ -9,11 +9,20 @@
   function mainController($scope, $http, Upload, $timeout, $state, $stateParams){
     var rootUrl = 'http://localhost:3000';
     var self = this;
-
+    self.thisAlbum = $stateParams.album
+    console.log('self', self)
   // ======================================================== //
                   // USERS CONTROLLER //
   // ======================================================== //
 
+  self.currentUserCheck = function(userId) {
+    if (localStorage.user_id == userId.toString()) {
+      self.isUser = true;
+    }
+    else {
+      self.isUser = false;
+    }
+  }
   // Get all users from backend
   self.getUsers = function(){
     $http.get(`${rootUrl}/users`)
@@ -21,22 +30,17 @@
       console.error(err);
     })
     .then(function(response){
-      self.allUsers = response.data;
+      self.allUsers = response.data.users;
     });
   }
-
-///////// AUTHORIZATION BEGIN //////////
   // User login
   self.login = function(userPass){
     $http.post(`${rootUrl}/users/login`, {user: {username: userPass.username, password: userPass.password}})
     .then(function(response){
       self.user = response.data.user
-      console.log(self.user);
-      console.log("Setting user_id");
       localStorage.setItem('user_id', response.data.user.id);
       localStorage.setItem('token', response.data.token);
-      console.log("calling getUserAlbums");
-      self.getUserAlbums();
+      self.getUserAlbums(self.user.id);
       $state.go('home', {url: '/user-home', user: response.data.user});
     })
     .catch(function(err){
@@ -48,9 +52,9 @@
     $http.post(`${rootUrl}/users`, {user: {username: userPass.username, password: userPass.password }})
     .then(function(response) {
       self.user = response.data.user
-      console.log(self.user);
       localStorage.setItem('user_id', JSON.stringify(response.data.user.id));
       localStorage.setItem('token', JSON.stringify(response.data.token));
+      self.getUserAlbums(self.user.id);
       $state.go('home', {url: '/user-home', user: response.data.user});
     })
     .catch(function(err) {
@@ -59,13 +63,11 @@
   }
   // Logout
   self.logout = function() {
+    self.user = null;
     localStorage.removeItem('token');
     localStorage.removeItem('user_id');
     $state.go('welcome', {url: '/'});
   }
-///////// AUTHORIZATION END //////////
-
-///////// CREATE ALBUMS  BEGIN //////////
 
   // ======================================================== //
                     // ALBUMS CONTROLLER //
@@ -73,37 +75,35 @@
 
     // self.getAllAlbums = function(){
     //   $http.get(`${rootUrl}/albums`)
-    //   .catch(function(err){
-    //     console.error(err);
-    //   })
     //   .then(function(response){
     //     self.allAlbums = response.data.albums
     //     console.log(self.allAlbums);
+    //     $state.go('gallery');
+    //   })
+    //   .catch(function(err){
+    //     console.error(err);
     //   })
     // }
 
-    self.getUserAlbums = function(){
-      var token = JSON.stringify(localStorage.getItem('token')).replace(/"/g,"");
-      console.log(token);
+    self.getUserAlbums = function(userId){
+      self.currentUserCheck(userId);
       $http({
         method: 'GET',
         headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
-        url: `${rootUrl}/users/${localStorage.getItem('user_id')}`
-      })
-      .catch(function(err){
-        console.error(err);
+        url: `${rootUrl}/users/${userId}`
       })
       .then(function(response){
         console.log(response);
         self.userAlbums = response.data.albums
-        console.log(self.userAlbums);
+        $state.go('home');
+      })
+      .catch(function(err){
+        console.error(err);
       })
     }
 
     self.createAlbum = function(album) {
       var token = JSON.stringify(localStorage.getItem('token')).replace(/"/g,"");
-      console.log(token);
-      console.log(localStorage.getItem('user_id'));
       $http({
         method: 'POST',
         headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
@@ -117,44 +117,121 @@
             }
         }
       })
+      .then(function(response){
+        // debugger;
+        // self.thisAlbum = response.data.album;
+        // $state.go('album-show', {album: album});
+        self.showAlbum(response.data.album);
+      })
       .catch(function(err){
         console.error(err);
-      })
-      .then(function(response){
-        console.log(response);
-        $state.go('home', {url: '/user-home'});
       })
     }
 
-    self.showAlbum = function(albumId) {
-      $http.get(`${rootUrl}/users/${localStorage.getItem('user_id')}/albums/${albumId}`)
+    self.updateAlbum = function(album, albumId) {
+      $http({
+        method: 'PATCH',
+        headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
+        url: `${rootUrl}/users/${localStorage.getItem('user_id')}/albums/${albumId}`,
+        data: {
+          album:
+            {
+              title: album.title,
+              description: album.description
+            }
+        }
+      })
       .then(function(response){
-        album = response.data.album;
-        console.log(album);
+        self.showAlbum(response.data.album);
       })
       .catch(function(err){
         console.error(err);
       })
     }
-    $scope.uploadPhoto = function(image){
-      console.log("Uploading...");
-      image.upload = Upload.upload({
-        url: url + '/photos',
-        data: {photo: {title: $scope.title, image: image}}
+
+    self.showAlbum = function(album) {
+      self.currentUserCheck(album.user_id);
+      $http.get(`${rootUrl}/albums/${album.id}`)
+      .then(function(response){
+        self.getAlbumOwner(album.user_id);
+        self.thisAlbum = response.data.album;
+        self.getAlbumPhotos(self.thisAlbum.id);
       })
       .then(function(response){
-          console.log(response);
+        $state.go('album-show');
       })
       .catch(function(err){
-        console.log(err);
+        console.error(err);
+      })
+    }
+    // Gets owner (user) of selected album
+    self.getAlbumOwner = function(userId) {
+      $http({
+        method: 'GET',
+        headers: {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
+        url: `${rootUrl}/users/${userId}`,
+      })
+      .then(function(response){
+        console.log("Getting album owner");
+        console.log(response);
+        self.thisAlbumOwner = response.data.user;
+      })
+      .catch(function(err){
+        console.error(err);
+      })
+    }
+
+    self.deleteAlbum = function(album){
+      $http({
+        method: 'DELETE',
+        headers: {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
+        url: `${rootUrl}/users/${localStorage.getItem('user_id')}/albums/${album.id}`
+      })
+      .then(function(response){
+        console.log(response);
+        self.getUserAlbums(self.user.id);
+        $state.go('home');
       });
     }
-  // Call methods on load
 
   // ======================================================== //
                   // PHOTOS CONTROLLER //
   // ======================================================== //
 
+  self.getAlbumPhotos = function(albumId) {
+    $http({
+      method: 'GET',
+      headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
+      url: `${rootUrl}/albums/${albumId}/photos`
+    })
+    .then(function(response){
+      console.log(response);
+      self.thisAlbum.photos = response.data.photos;
+      console.log("photos:");
+      console.log(self.thisAlbum.photos);
+      $state.go('album-show');
+    })
+    .catch(function(err){
+      console.error(err);
+    })
   }
+
+  self.uploadPhoto = function(image, albumId){
+    image.upload = Upload.upload({
+      url: `${rootUrl}/albums/${albumId}/photos`,
+      data: {photo: {title: $scope.title, image: image}}
+    })
+    .then(function(response){
+        console.log(response);
+        self.getAlbumPhotos();
+        $state.go('album-show');
+    })
+    .catch(function(err){
+      console.log(err);
+    });
+  }
+
+
+} // Close mainController function
 
 })()

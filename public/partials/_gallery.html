@@ -1,5 +1,6 @@
 
 
+
   <div class="album">
     <div ng-repeat="album in mainCtrl.allAlbums">
       <div class="row">
@@ -27,10 +28,14 @@
       </div>
     </div>
 
-    <!--==========** MAIN FOOTER **===========-->
-        <footer class="page-footer black">
-          <div class="container">  
-              <div class="col l6 s12">
-    </footer>
-
+<ul ng-repeat="user in mainCtrl.allUsers">
+  <li ng-click="mainCtrl.getUserAlbums(user.id)">{{user.username}} Id: {{user.id}}</li>
 </ul>
+
+
+    <!--==========** MAIN FOOTER **===========-->
+  <footer class="page-footer black">
+      <div class="container">  
+        <div class="col l6 s12"></div>
+      </div>
+  </footer>

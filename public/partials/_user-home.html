@@ -1,4 +1,5 @@
 <div class="row center">
+
 <a ui-sref="new-album">Create New Album</a>
      <div ng-repeat="album in mainCtrl.allAlbums">
        <div class="row">
@@ -19,6 +20,20 @@
        </div>
      </div>
 
+
+
+    <a ng-if="mainCtrl.isUser" ui-sref="new-album">Create New Album</a>
+   <!-- <a class='dropdown-button btn' data-beloworigin="true" href='#' data-activates='dropdown1'>Albums</a> -->
+  <div class="" ng-repeat="album in mainCtrl.userAlbums">
+    <div class="" ng-click="mainCtrl.showAlbum(album)">
+      <h3>{{album.title}}</h3>
+      <h5>{{album.id}}</h5>
+      <p>
+        {{album.description}}
+      </p>
+    </div>
+  </div>
+</div>
 
 
 <!--==========** MAIN FOOTER **===========-->
