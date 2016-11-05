@@ -121,6 +121,27 @@
       })
     }
 
+    self.updateAlbum = function(album, albumId) {
+      $http({
+        method: 'PATCH',
+        headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
+        url: `${rootUrl}/users/${localStorage.getItem('user_id')}/albums/${albumId}`,
+        data: {
+          album:
+            {
+              title: album.title,
+              description: album.description
+            }
+        }
+      })
+      .then(function(response){
+        self.showAlbum(response.data.album);
+      })
+      .catch(function(err){
+        console.error(err);
+      })
+    }
+
     self.showAlbum = function(album) {
       $http.get(`${rootUrl}/albums/${album.id}`)
       .then(function(response){

@@ -10,10 +10,6 @@
         .state('welcome', {
           url: '/',
           templateUrl: '../partials/_welcome.html',
-          // params : {
-          //   user: null,
-          //   album: null
-          // }
         })
         .state('signup', {
           url: '/signup',
@@ -34,9 +30,10 @@
         .state('album-show', {
           url: '/album-show',
           templateUrl: '../partials/_album-show.html',
-          params :{
-            album: null
-          }
+        })
+        .state('album-update', {
+          url: '/album-update',
+          templateUrl: '../partials/_update-album.html',
         })
         .state('new-album', {
          url: '/new-album',
