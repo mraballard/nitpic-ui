@@ -41,14 +41,14 @@
 
         <ul ng-if="mainCtrl.user" id="nav-mobile" class="wh right hide-on-med-and-down">
           <li><a class="navHov" ui-sref="home" ng-click="mainCtrl.getUserAlbums()">Home</a></li>
-          <li><a class="navHov" ui-sref="gallery">Gallery</a></li>
+          <li><a class="navHov" ui-sref="gallery" ng-click="mainCtrl.getUsers()">Gallery</a></li>
           <li><a class="navHov" ui-sref="contact">Contact</a></li>
           <li><a class="navHov" ui-sref="welcome" ng-click="mainCtrl.logout()">Logout</a></li>
         </ul>
         <ul ng-if="!mainCtrl.user" id="nav-mobile" class="wh right hide-on-med-and-down">
           <li><a class="navHov" ui-sref="login">Log In</a></li>
           <li><a class="navHov" ui-sref="signup">Sign Up</a></li>
-          <li><a class="navHov" ui-sref="gallery">Gallery</a></li>
+          <li><a class="navHov" ui-sref="gallery" ng-click="mainCtrl.getUsers()">Gallery</a></li>
           <li><a class="navHov" ui-sref="contact">Contact</a></li>
         </ul>
       </div>

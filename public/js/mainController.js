@@ -22,11 +22,9 @@
       console.error(err);
     })
     .then(function(response){
-      self.allUsers = response.data;
+      self.allUsers = response.data.users;
     });
   }
-
-///////// AUTHORIZATION BEGIN //////////
   // User login
   self.login = function(userPass){
     $http.post(`${rootUrl}/users/login`, {user: {username: userPass.username, password: userPass.password}})
@@ -62,9 +60,6 @@
     localStorage.removeItem('user_id');
     $state.go('welcome', {url: '/'});
   }
-///////// AUTHORIZATION END //////////
-
-///////// CREATE ALBUMS  BEGIN //////////
 
   // ======================================================== //
                     // ALBUMS CONTROLLER //
@@ -72,21 +67,22 @@
 
     // self.getAllAlbums = function(){
     //   $http.get(`${rootUrl}/albums`)
-    //   .catch(function(err){
-    //     console.error(err);
-    //   })
     //   .then(function(response){
     //     self.allAlbums = response.data.albums
     //     console.log(self.allAlbums);
+    //     $state.go('gallery');
+    //   })
+    //   .catch(function(err){
+    //     console.error(err);
     //   })
     // }
 
-    self.getUserAlbums = function(){
+    self.getUserAlbums = function(userId){
       var token = JSON.stringify(localStorage.getItem('token')).replace(/"/g,"");
       $http({
         method: 'GET',
         headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
-        url: `${rootUrl}/users/${localStorage.getItem('user_id')}`
+        url: `${rootUrl}/users/${userId}`
       })
       .catch(function(err){
         console.error(err);
