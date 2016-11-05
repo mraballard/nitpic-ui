@@ -57,6 +57,7 @@
   }
   // Logout
   self.logout = function() {
+    self.user = null;
     localStorage.removeItem('token');
     localStorage.removeItem('user_id');
     $state.go('welcome', {url: '/'});

@@ -36,14 +36,20 @@
         <!-- duplicate the two links ag do an ng-show hide based on
               a users login to reference user home if logged in
               or welcome home when not logged in-->
-        <a ui-sref="home"><img id='logo' src="./img/NITPIC_tiny.png"></a>
-        <a ui-sref="home" class="center brand-logo black"><span class="portText">NITPIC</span></a>
+        <a ui-sref="welcome"><img id='logo' src="./img/NITPIC_tiny.png"></a>
+        <a ui-sref="welcome" class="center brand-logo black"><span class="portText">NITPIC</span></a>
 
-        <ul id="nav-mobile" class="wh right hide-on-med-and-down">
+        <ul ng-if="mainCtrl.user" id="nav-mobile" class="wh right hide-on-med-and-down">
           <li><a class="navHov" ui-sref="home" ng-click="mainCtrl.getUserAlbums()">Home</a></li>
           <li><a class="navHov" ui-sref="gallery">Gallery</a></li>
           <li><a class="navHov" ui-sref="contact">Contact</a></li>
           <li><a class="navHov" ui-sref="welcome" ng-click="mainCtrl.logout()">Logout</a></li>
+        </ul>
+        <ul ng-if="!mainCtrl.user" id="nav-mobile" class="wh right hide-on-med-and-down">
+          <li><a class="navHov" ui-sref="login">Log In</a></li>
+          <li><a class="navHov" ui-sref="signup">Sign Up</a></li>
+          <li><a class="navHov" ui-sref="gallery">Gallery</a></li>
+          <li><a class="navHov" ui-sref="contact">Contact</a></li>
         </ul>
       </div>
     </nav>
