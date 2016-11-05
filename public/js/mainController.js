@@ -111,19 +111,40 @@
         }
       })
       .then(function(response){
-        debugger;
-        self.thisAlbum = response.data.album;
-        $state.go('album-show', {album: album});
+        // debugger;
+        // self.thisAlbum = response.data.album;
+        // $state.go('album-show', {album: album});
+        self.showAlbum(response.data.album);
       })
       .catch(function(err){
         console.error(err);
       })
     }
 
-    self.showAlbum = function(albumId) {
-      $http.get(`${rootUrl}/users/${localStorage.getItem('user_id')}/albums/${albumId}`)
+    self.showAlbum = function(album) {
+      $http.get(`${rootUrl}/albums/${album.id}`)
       .then(function(response){
-        album = response.data.album;
+        self.getAlbumOwner(album.user_id);
+        self.thisAlbum = response.data.album;
+      })
+      .then(function(response){
+        $state.go('album-show');
+      })
+      .catch(function(err){
+        console.error(err);
+      })
+    }
+    // Gets user that owns selected album
+    self.getAlbumOwner = function(userId) {
+      $http({
+        method: 'GET',
+        headers: {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
+        url: `${rootUrl}/users/${userId}`,
+      })
+      .then(function(response){
+        console.log("Getting album owner");
+        console.log(response);
+        self.thisAlbumOwner = response.data.user;
       })
       .catch(function(err){
         console.error(err);

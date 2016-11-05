@@ -1,10 +1,11 @@
 <!-- <div class="album" ng-controller="mainController as album"> -->
-  <h4>{{2+2}}</h4>
-  {{mainCtrl.user}}
-  <h4>{{mainCtrl.thisAlbum}}</h4>
+
+
+  <h4>{{mainCtrl.thisAlbum.title}}</h4>
   <p>
-    state param: {{mainCtrl.prototype}}
+    {{mainCtrl.thisAlbum.description}}
   </p>
+  <h5>Created by: {{mainCtrl.thisAlbumOwner.username}}</h5>
 
   <form name="myForm">
     <label>Title:</label>
@@ -17,5 +18,4 @@
               ng-click="uploadPhoto(image)">Submit</button>
   </form>
 
-  <h6>{{mainCtrl.thisAlbum}}</h6>
 <!-- </div> -->
