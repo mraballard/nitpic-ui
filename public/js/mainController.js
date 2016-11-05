@@ -150,6 +150,30 @@
         console.error(err);
       })
     }
+
+    self.deleteAlbum = function(album){
+      $http({
+        method: 'DELETE',
+        headers: {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
+        url: `${rootUrl}/users/${localStorage.getItem('user_id')}/albums/${album.id}`
+      })
+      .then(function(response){
+        console.log(response);
+        self.getUserAlbums();
+        $state.go('home');
+      });
+    }
+
+
+
+
+
+
+
+
+
+
+
     $scope.uploadPhoto = function(image){
       image.upload = Upload.upload({
         url: url + '/photos',

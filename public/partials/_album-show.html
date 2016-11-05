@@ -5,6 +5,7 @@
   <p>
     {{mainCtrl.thisAlbum.description}}
   </p>
+  <h6>{{mainCtrl.thisAlbum.id}}</h6>
   <h5>Created by: {{mainCtrl.thisAlbumOwner.username}}</h5>
 
   <form name="myForm">
@@ -18,4 +19,5 @@
               ng-click="uploadPhoto(image)">Submit</button>
   </form>
 
+<h3 ng-click="mainCtrl.deleteAlbum(mainCtrl.thisAlbum)">Delete this Album</h3>
 <!-- </div> -->
