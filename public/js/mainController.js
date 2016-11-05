@@ -217,13 +217,14 @@
   }
 
   self.uploadPhoto = function(image, albumId){
+    console.log(albumId);
     image.upload = Upload.upload({
       url: `${rootUrl}/albums/${albumId}/photos`,
       data: {photo: {title: $scope.title, image: image}}
     })
     .then(function(response){
         console.log(response);
-        self.getAlbumPhotos();
+        self.getAlbumPhotos(albumId);
         $state.go('album-show');
     })
     .catch(function(err){
