@@ -8,20 +8,22 @@
   <h6>{{mainCtrl.thisAlbum.id}}</h6>
   <h5>Created by: {{mainCtrl.thisAlbumOwner.username}}</h5>
 <div ng-if="mainCtrl.isUser">
-  <form name="myForm">
+  <form name="myForm" ng-submit="mainCtrl.uploadPhoto(image,mainCtrl.thisAlbum.id)">
     <label>Title:</label>
     <input type="text" name="title" ng-model="title"/><br>
     <input type="file" ngf-select ng-model="image" name="image"
              accept="image/*" ngf-max-size="2MB" required
              ngf-model-invalid="errorFile"><br>
     <button ng-click="image = null" ng-show="image">Remove</button>
-    <button ng-disabled="!myForm.$valid"
-              ng-click="uploadPhoto(image)">Submit</button>
+    <button ng-disabled="!myForm.$valid">Submit</button>
   </form>
   <hr>
   <h4 ui-sref="album-update">Change Title / Description</h4>
   <h5 ng-click="mainCtrl.deleteAlbum(mainCtrl.thisAlbum)">Delete this Album</h5>
 </div>
 
+<div class="" ng-repeat="photo in mainCtrl.thisAlbum.photos">
+  <img ng-src="{{photo.image}}" alt="" />
+</div>
 
 <!-- </div> -->

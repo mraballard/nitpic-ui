@@ -155,6 +155,7 @@
       .then(function(response){
         self.getAlbumOwner(album.user_id);
         self.thisAlbum = response.data.album;
+        self.getAlbumPhotos(self.thisAlbum.id);
       })
       .then(function(response){
         $state.go('album-show');
@@ -163,7 +164,7 @@
         console.error(err);
       })
     }
-    // Gets user that owns selected album
+    // Gets owner (user) of selected album
     self.getAlbumOwner = function(userId) {
       $http({
         method: 'GET',
@@ -193,27 +194,44 @@
       });
     }
 
-
-
-
-    $scope.uploadPhoto = function(image){
-      image.upload = Upload.upload({
-        url: url + '/photos',
-        data: {photo: {title: $scope.title, image: image}}
-      })
-      .then(function(response){
-          console.log(response);
-      })
-      .catch(function(err){
-        console.log(err);
-      });
-    }
-  // Call methods on load
-
   // ======================================================== //
                   // PHOTOS CONTROLLER //
   // ======================================================== //
 
+  self.getAlbumPhotos = function(albumId) {
+    $http({
+      method: 'GET',
+      headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
+      url: `${rootUrl}/albums/${albumId}/photos`
+    })
+    .then(function(response){
+      console.log(response);
+      self.thisAlbum.photos = response.data.photos;
+      console.log("photos:");
+      console.log(self.thisAlbum.photos);
+      $state.go('album-show');
+    })
+    .catch(function(err){
+      console.error(err);
+    })
   }
+
+  self.uploadPhoto = function(image, albumId){
+    image.upload = Upload.upload({
+      url: `${rootUrl}/albums/${albumId}/photos`,
+      data: {photo: {title: $scope.title, image: image}}
+    })
+    .then(function(response){
+        console.log(response);
+        self.getAlbumPhotos();
+        $state.go('album-show');
+    })
+    .catch(function(err){
+      console.log(err);
+    });
+  }
+
+
+} // Close mainController function
 
 })()
