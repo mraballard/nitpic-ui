@@ -1,5 +1,7 @@
 <!-- <div class="album" ng-controller="mainController as album"> -->
 
+<button ui-sref="home" id="back" class="btn waves-effect waves-light">Go Back
+</button>
 
   <h4>{{mainCtrl.thisAlbum.title}}</h4>
   <p>
@@ -14,17 +16,17 @@
     <input type="file" ngf-select ng-model="image" name="image"
              accept="'image/*'" ngf-max-size="2MB" required
              ngf-model-invalid="errorFile"><br>
-    <button ng-click="image = null" ng-show="image">Remove</button>
-    <button ng-disabled="!myForm.$valid">Submit</button>
+    <button class="btn waves-effect waves-light" ng-click="image = null" ng-show="image">Remove</button>
+    <button class="btn waves-effect waves-light" ng-disabled="!myForm.$valid">Submit</button>
   </form>
   <hr>
-  <h4 ui-sref="album-update">Change Title / Description</h4>
-  <h5 ng-click="mainCtrl.deleteAlbum(mainCtrl.thisAlbum)">Delete this Album</h5>
+  <button ui-sref="album-update" class="btn waves-effect waves-light">Edit Album</button>
+  <h5 class="btn waves-effect waves-light" ng-click="mainCtrl.deleteAlbum(mainCtrl.thisAlbum)">Delete this Album</h5>
 </div>
 
-<div class="" ng-repeat="photo in mainCtrl.thisAlbum.photos">
+<div ng-repeat="photo in mainCtrl.thisAlbum.photos">
   <h6>{{photo.title}}</h6>
-  <img ng-src="{{photo.image_thumb_url}}"
+  <img id="albumShowCss" ng-src="{{photo.image_thumb_url}}"
     ng-click="mainCtrl.getPhoto(photo.id)"
     alt="{{photo.image_file_name}}" />
 

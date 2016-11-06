@@ -306,7 +306,7 @@
   self.createComment = function(comment) {
     $http({
       method: 'POST',
-      url: `${rootUrl}/photos/${photo_id}/comments`
+      url: `${rootUrl}/photos/${photo_id}/comments`,
       data: comment
     })
     .then(function(response){
