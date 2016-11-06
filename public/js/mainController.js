@@ -194,10 +194,6 @@
       });
     }
 
-  // ======================================================== //
-                  // PHOTOS CONTROLLER //
-  // ======================================================== //
-
   self.getAlbumPhotos = function(albumId) {
     $http({
       method: 'GET',
@@ -210,6 +206,45 @@
       console.log("photos:");
       console.log(self.thisAlbum.photos);
       $state.go('album-show');
+    })
+    .catch(function(err){
+      console.error(err);
+    })
+  }
+
+  // ======================================================== //
+                  // PHOTOS CONTROLLER //
+  // ======================================================== //
+
+  self.getPhoto = function(photoId){
+    $http({
+      method: 'GET',
+      url: `${rootUrl}/photos/${photoId}`
+    })
+    .then(function(response){
+      console.log(response);
+      self.photo = response.data.photo;
+      self.imageSource = response.data.source;
+      //link to the large 600x60 image src url
+      //add mainCtrl.imageSource to the ng-src
+      // all other photo data like title found mainCtrl.photo
+    })
+    .then(function(photoId){
+      //I was thinking auto calling
+      //for the photo comments at the same time
+      //instead of a seperate controller like on line 285
+      $http({
+        method: 'GET',
+        url: `${rootUrl}/photos/${photoId}/comments`
+      })
+      .then(function(response){
+        console.log(response);
+        self.photoComments = response.data.comments;
+        $state.go('photo-show');
+      })
+      .catch(function(err){
+        console.error(err);
+      })
     })
     .catch(function(err){
       console.error(err);
@@ -248,19 +283,19 @@
                   // COMMENTS CONTROLLER //
   // ======================================================== //
 
-  self.getPhotoComments = function(photoId){
-    $http({
-      method: 'GET',
-      url: `${rootUrl}/photos/${photoId}/comments`
-    })
-    .then(function(response){
-      console.log(response);
-      self.photoComments = response.data.comments;
-    })
-    .catch(function(err){
-      console.error(err);
-    })
-  }
+  // self.getPhotoComments = function(photoId){
+  //   $http({
+  //     method: 'GET',
+  //     url: `${rootUrl}/photos/${photoId}/comments`
+  //   })
+  //   .then(function(response){
+  //     console.log(response);
+  //     self.photoComments = response.data.comments;
+  //   })
+  //   .catch(function(err){
+  //     console.error(err);
+  //   })
+  // }
 
   self.createComment = function(comment) {
     $http({
