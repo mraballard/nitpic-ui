@@ -23,8 +23,13 @@
 </div>
 
 <div class="" ng-repeat="photo in mainCtrl.thisAlbum.photos">
-  <h6>{{photo.image_file_name}}</h6>
-  <img ng-src="{{photo.image_file_name}}" alt="" />
+  <h6>{{photo.title}}</h6>
+  <img ng-src="{{photo.image_thumb_url}}"
+    alt="{{photo.image_file_name}}" />
+    <!-- add ng-click="mainCtrl.getPhoto(photo.id)"
+        to above img tag or what ever we named it
+        I didnt get the updates that shawn made with
+        the angular controller-->
 </div>
 
 <!-- </div> -->
