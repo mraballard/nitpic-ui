@@ -12,3 +12,9 @@
         <button id="newCommentButton" class="btn waves-effect waves-light" type="submit">Add Comment</button>
     </form>
 </div>
+<div id="container">
+  <ul ng-repeat="comment in mainCtrl.thisPhoto.comments">
+    <li>{{comment.created_at | date: 'short' }} - {{comment.body}}</li>
+  </ul>
+
+</div>

@@ -10,7 +10,6 @@
     var rootUrl = 'http://localhost:3000';
     var self = this;
     self.thisAlbum = $stateParams.album
-    console.log('self', self)
   // ======================================================== //
                   // USERS CONTROLLER //
   // ======================================================== //
@@ -93,7 +92,6 @@
         url: `${rootUrl}/users/${userId}`
       })
       .then(function(response){
-        console.log(response);
         self.userAlbums = response.data.albums
         $state.go('home');
       })
@@ -172,8 +170,6 @@
         url: `${rootUrl}/users/${userId}`,
       })
       .then(function(response){
-        console.log("Getting album owner");
-        console.log(response);
         self.thisAlbumOwner = response.data.user;
       })
       .catch(function(err){
@@ -230,8 +226,9 @@
       url: `${rootUrl}/photos/${photoId}/comments`
     })
     .then(function(response){
+      console.log("getPhotoComments");
       console.log(response);
-      self.photoComments = response.data.comments;
+      self.thisPhoto.comments = response.data.comments;
     })
     .catch(function(err){
       console.error(err);
