@@ -270,14 +270,17 @@
   // ======================================================== //
 
 
-  self.createComment = function(comment) {
+  self.createComment = function(newComment, photoId) {
     $http({
       method: 'POST',
-      url: `${rootUrl}/photos/${photo_id}/comments`,
-      data: comment
+      headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
+      url: `${rootUrl}/photos/${photoId}/comments`,
+      data: {
+        comment: newComment
+      }
     })
     .then(function(response){
-    self.photoComments = response.data.comments;
+    self.thisPhoto.comments = response.data.comments;
     })
     .catch(function(err){
       console.error(err);

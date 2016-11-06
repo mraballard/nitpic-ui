@@ -3,12 +3,11 @@
   alt="{{mainCtrl.thisPhoto.image_file_name}}" />
 
 <div id="container">
-    <form id="createComment" ng-submit="mainCtrl.createComment(newComment)">
+    <form id="createComment" ng-submit="mainCtrl.createComment(newComment, mainCtrl.thisPhoto.id)">
         <div class="input-field">
            <label for="title">Comment</label>
-            <input id="title" type="text" ng-model="newComment.description">
+            <input id="title" type="text" ng-model="newComment.body">
         </div>
-
 
         <button id="newCommentButton" class="btn waves-effect waves-light" type="submit">Add Comment</button>
     </form>
