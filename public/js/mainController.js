@@ -200,10 +200,6 @@
       });
     }
 
-  // ======================================================== //
-                  // PHOTOS CONTROLLER //
-  // ======================================================== //
-
   self.getAlbumPhotos = function(albumId) {
     $http({
       method: 'GET',
@@ -222,21 +218,114 @@
     })
   }
 
+  // ======================================================== //
+                  // PHOTOS CONTROLLER //
+  // ======================================================== //
+
+  self.getPhoto = function(photoId){
+    $http({
+      method: 'GET',
+      url: `${rootUrl}/photos/${photoId}`
+    })
+    .then(function(response){
+      console.log(response);
+      self.photo = response.data.photo;
+      self.imageSource = response.data.source;
+      //link to the large 600x60 image src url
+      //add mainCtrl.imageSource to the ng-src
+      // all other photo data like title found mainCtrl.photo
+    })
+    .then(function(photoId){
+      //I was thinking auto calling
+      //for the photo comments at the same time
+      //instead of a seperate controller like on line 285
+      $http({
+        method: 'GET',
+        url: `${rootUrl}/photos/${photoId}/comments`
+      })
+      .then(function(response){
+        console.log(response);
+        self.photoComments = response.data.comments;
+        $state.go('photo-show');
+      })
+      .catch(function(err){
+        console.error(err);
+      })
+    })
+    .catch(function(err){
+      console.error(err);
+    })
+  }
+
   self.uploadPhoto = function(image, albumId){
+    console.log(albumId);
     image.upload = Upload.upload({
       url: `${rootUrl}/albums/${albumId}/photos`,
       data: {photo: {title: $scope.title, image: image}}
     })
     .then(function(response){
         console.log(response);
-        self.getAlbumPhotos();
+        self.getAlbumPhotos(albumId);
         $state.go('album-show');
     })
     .catch(function(err){
       console.log(err);
     });
   }
+  self.deletePhoto = function(photo){
+    $http({
+      method: 'DELETE',
+      url: `${rootUrl}/photos/${photo.id}`
+    })
+    .then(function(response){
+      console.log(response);
+      self.getUserPhotos(self.user.id);
+      $state.go('album-show');
+    });
+  }
 
+
+  // ======================================================== //
+                  // COMMENTS CONTROLLER //
+  // ======================================================== //
+
+  // self.getPhotoComments = function(photoId){
+  //   $http({
+  //     method: 'GET',
+  //     url: `${rootUrl}/photos/${photoId}/comments`
+  //   })
+  //   .then(function(response){
+  //     console.log(response);
+  //     self.photoComments = response.data.comments;
+  //   })
+  //   .catch(function(err){
+  //     console.error(err);
+  //   })
+  // }
+
+  self.createComment = function(comment) {
+    $http({
+      method: 'POST',
+      url: `${rootUrl}/photos/${photo_id}/comments`
+      data: comment
+    })
+    .then(function(response){
+    self.photoComments = response.data.comments;
+    })
+    .catch(function(err){
+      console.error(err);
+    })
+  }
+  self.deleteComment = function(commentId){
+    $http({
+      method: 'DELETE',
+      url: `${rootUrl}/photos/${photo_id}/comments/${commentId}`
+    })
+    .then(function(response){
+      console.log(response);
+      self.photoComments = response.data.comments;
+    });
+  }
 
 } // Close mainController function
 
