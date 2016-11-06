@@ -252,13 +252,17 @@
   self.deletePhoto = function(photo){
     $http({
       method: 'DELETE',
+      headers: {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
       url: `${rootUrl}/photos/${photo.id}`
     })
     .then(function(response){
       console.log(response);
-      self.getUserPhotos(self.user.id);
+      self.showAlbum(self.thisAlbum);
       $state.go('album-show');
-    });
+    })
+    .catch(function(err){
+      console.log(error);
+    })
   }
 
 
@@ -282,6 +286,7 @@
     .catch(function(err){
       console.error(err);
     })
+    newComment = "";
   }
 
   self.deleteComment = function(commentId){

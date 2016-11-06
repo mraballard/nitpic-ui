@@ -1,4 +1,6 @@
 
+<button ng-if="mainCtrl.isUser" ng-click="mainCtrl.deletePhoto(mainCtrl.thisPhoto)" id="deletePhotoButton" class="btn waves-effect waves-light">Delet Photo</button>
+
 <img ng-src="{{mainCtrl.thisPhoto.image_large_url}}"
   alt="{{mainCtrl.thisPhoto.image_file_name}}" />
 
