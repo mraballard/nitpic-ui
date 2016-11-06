@@ -231,7 +231,60 @@
       console.log(err);
     });
   }
+  self.deletePhoto = function(photo){
+    $http({
+      method: 'DELETE',
+      url: `${rootUrl}/photos/${photo.id}`
+    })
+    .then(function(response){
+      console.log(response);
+      self.getUserPhotos(self.user.id);
+      $state.go('album-show');
+    });
+  }
 
+
+  // ======================================================== //
+                  // COMMENTS CONTROLLER //
+  // ======================================================== //
+
+  self.getPhotoComments = function(photoId){
+    $http({
+      method: 'GET',
+      url: `${rootUrl}/photos/${photoId}/comments`
+    })
+    .then(function(response){
+      console.log(response);
+      self.photoComments = response.data.comments;
+    })
+    .catch(function(err){
+      console.error(err);
+    })
+  }
+
+  self.createComment = function(comment) {
+    $http({
+      method: 'POST',
+      url: `${rootUrl}/photos/${photo_id}/comments`
+      data: comment
+    })
+    .then(function(response){
+    self.photoComments = response.data.comments;
+    })
+    .catch(function(err){
+      console.error(err);
+    })
+  }
+  self.deleteComment = function(commentId){
+    $http({
+      method: 'DELETE',
+      url: `${rootUrl}/photos/${photo_id}/comments/${commentId}`
+    })
+    .then(function(response){
+      console.log(response);
+      self.photoComments = response.data.comments;
+    });
+  }
 
 } // Close mainController function
 
