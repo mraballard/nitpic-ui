@@ -33,7 +33,9 @@
       self.allUsers = response.data.users;
     });
   }
-  // User login
+  // ======================================================== //
+                        // LOGIN //
+  // ======================================================== //
   self.login = function(userPass){
     $http.post(`${rootUrl}/users/login`, {user: {username: userPass.username, password: userPass.password}})
     .then(function(response){
@@ -47,7 +49,9 @@
       console.error(err);
     })
   }
-  // Signup
+  // ======================================================== //
+                    // SIGNUP //
+  // ======================================================== //
   self.signup = function(userPass){
     $http.post(`${rootUrl}/users`, {user: {username: userPass.username, password: userPass.password }})
     .then(function(response) {
@@ -61,7 +65,9 @@
       console.error(err);
     });
   }
-  // Logout
+  // ======================================================== //
+                    // LOGOUT //
+  // ======================================================== //
   self.logout = function() {
     self.user = null;
     localStorage.removeItem('token');
