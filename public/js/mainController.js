@@ -194,63 +194,49 @@
       });
     }
 
-  self.getAlbumPhotos = function(albumId) {
-    $http({
-      method: 'GET',
-      headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
-      url: `${rootUrl}/albums/${albumId}/photos`
-    })
-    .then(function(response){
-      console.log(response);
-      self.thisAlbum.photos = response.data.photos;
-      console.log("photos:");
-      console.log(self.thisAlbum.photos);
-      $state.go('album-show');
-    })
-    .catch(function(err){
-      console.error(err);
-    })
-  }
+    self.getAlbumPhotos = function(albumId) {
+      $http({
+        method: 'GET',
+        headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
+        url: `${rootUrl}/albums/${albumId}/photos`
+      })
+      .then(function(response){
+        console.log(response);
+        self.thisAlbum.photos = response.data.photos;
+        console.log("photos:");
+        console.log(self.thisAlbum.photos);
+        $state.go('album-show');
+      })
+      .catch(function(err){
+        console.error(err);
+      })
+    }
 
   // ======================================================== //
                   // PHOTOS CONTROLLER //
   // ======================================================== //
 
-  self.getPhoto = function(photoId){
-    $http({
-      method: 'GET',
-      url: `${rootUrl}/photos/${photoId}`
-    })
-    .then(function(response){
-      console.log(response);
-      self.photo = response.data.photo;
-      self.imageSource = response.data.source;
+  self.showPhoto = function(index){
+    self.thisPhoto = self.thisAlbum.photos[index];
+    self.getPhotoComments(self.thisPhoto.id);
       //link to the large 600x60 image src url
       //add mainCtrl.imageSource to the ng-src
       // all other photo data like title found mainCtrl.photo
+    $state.go('photo-show');
+  }
+  self.getPhotoComments = function(photoId){
+    $http({
+      method: 'GET',
+      url: `${rootUrl}/photos/${photoId}/comments`
     })
-    .then(function(photoId){
-      //I was thinking auto calling
-      //for the photo comments at the same time
-      //instead of a seperate controller like on line 285
-      $http({
-        method: 'GET',
-        url: `${rootUrl}/photos/${photoId}/comments`
-      })
-      .then(function(response){
-        console.log(response);
-        self.photoComments = response.data.comments;
-        $state.go('photo-show');
-      })
-      .catch(function(err){
-        console.error(err);
-      })
+    .then(function(response){
+      console.log(response);
+      self.photoComments = response.data.comments;
     })
     .catch(function(err){
       console.error(err);
     })
   }
-
   self.uploadPhoto = function(image, albumId){
     console.log(albumId);
     image.upload = Upload.upload({
@@ -283,24 +269,11 @@
                   // COMMENTS CONTROLLER //
   // ======================================================== //
 
-  // self.getPhotoComments = function(photoId){
-  //   $http({
-  //     method: 'GET',
-  //     url: `${rootUrl}/photos/${photoId}/comments`
-  //   })
-  //   .then(function(response){
-  //     console.log(response);
-  //     self.photoComments = response.data.comments;
-  //   })
-  //   .catch(function(err){
-  //     console.error(err);
-  //   })
-  // }
 
   self.createComment = function(comment) {
     $http({
       method: 'POST',
-      url: `${rootUrl}/photos/${photo_id}/comments`
+      url: `${rootUrl}/photos/${photo_id}/comments`,
       data: comment
     })
     .then(function(response){
