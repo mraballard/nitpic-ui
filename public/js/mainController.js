@@ -270,7 +270,7 @@
   self.createComment = function(newComment, photoId) {
     $http({
       method: 'POST',
-      headers:   {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
+      headers: {'Authorization': `Bearer ${JSON.stringify(localStorage.getItem('token'))}`},
       url: `${rootUrl}/photos/${photoId}/comments`,
       data: {
         comment: newComment
@@ -283,6 +283,7 @@
       console.error(err);
     })
   }
+
   self.deleteComment = function(commentId){
     $http({
       method: 'DELETE',
