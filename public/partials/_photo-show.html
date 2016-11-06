@@ -4,7 +4,7 @@
 <img ng-src="{{mainCtrl.thisPhoto.image_large_url}}"
   alt="{{mainCtrl.thisPhoto.image_file_name}}" />
 
-<div id="container">
+<div ng-if="mainCtrl.user" id="container">
     <form id="createComment" ng-submit="mainCtrl.createComment(newComment, mainCtrl.thisPhoto.id)">
         <div class="input-field">
            <label for="title">Comment</label>
