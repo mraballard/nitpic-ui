@@ -7,7 +7,7 @@
   mainController.$inject = ['$scope', '$http', 'Upload', '$timeout', '$state', '$stateParams'];
 
   function mainController($scope, $http, Upload, $timeout, $state, $stateParams){
-    var rootUrl = 'http://localhost:3000';
+    var rootUrl = 'https://nitpic-app-api.herokuapp.com'; 
     var self = this;
   // ======================================================== //
                   // USERS CONTROLLER //
