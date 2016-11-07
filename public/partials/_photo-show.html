@@ -1,10 +1,16 @@
 
-<button ng-if="mainCtrl.isUser" ng-click="mainCtrl.deletePhoto(mainCtrl.thisPhoto)" id="deletePhotoButton" class="btn waves-effect waves-light">Delet Photo</button>
+<div class="custom-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br><br>
+      <h1 class="header center teal-text text-lighten-2"></h1>
+      <div class="row center">
+        <h5 class="header col s12 light">
+          <button ui-sref="album-show" id="back" class="btn waves-effect waves-light">Go Back</button>
 
-<img ng-src="{{mainCtrl.thisPhoto.image_large_url}}"
-  alt="{{mainCtrl.thisPhoto.image_file_name}}" />
 
-<div ng-if="mainCtrl.user" id="container">
+<!-- <<<<<<< HEAD -->
+<!-- <div ng-if="mainCtrl.user" id="container">
     <form id="createComment" ng-submit="mainCtrl.createComment(self.newComment, mainCtrl.thisPhoto.id)">
         <div class="input-field">
            <label for="title">Comment</label>
@@ -17,6 +23,32 @@
 <div id="container">
   <ul ng-repeat="comment in mainCtrl.thisPhoto.comments">
     <li ng-click="mainCtrl.getUserAlbums(comment.user_id)">{{comment.created_at | date: 'short' }} - {{comment.body}} @{{comment.username}}</li>
-  </ul>
+  </ul> -->
+<!-- ======= -->
+          <br><br><br>
+          <button ng-if="mainCtrl.isUser" ng-click="mainCtrl.deletePhoto(mainCtrl.thisPhoto)" id="deletePhotoButton" class="center btn waves-effect waves-light">Delete Photo</button>
+          <br><br>
 
-</div>
+          <img id="photoShowCss" ng-src="{{mainCtrl.thisPhoto.image_large_url}}"
+            alt="{{mainCtrl.thisPhoto.image_file_name}}" />
+
+          <div id="container">
+              <form id="createComment" ng-submit="mainCtrl.createComment(newComment, mainCtrl.thisPhoto.id)">
+                  <div class="input-field">
+                     <label for="title">Comment</label>
+                      <input id="title" type="text" ng-model="newComment.body">
+                  </div>
+<!-- >>>>>>> db135f6453e7d69f8270a96b97fd188e22e70b72 -->
+
+                  <button id="newCommentButton" class="btn waves-effect waves-light" type="submit">Add Comment</button>
+              </form>
+          </div>
+          <div id="container">
+            <ul ng-repeat="comment in mainCtrl.thisPhoto.comments">
+              <li>{{comment.created_at | date: 'short' }} - {{comment.body}} @{{comment.username}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
