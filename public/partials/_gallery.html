@@ -15,15 +15,13 @@
   <br>
 
   <div class="album">
-    <div ng-repeat="album in mainCtrl.allAlbums">
-      <div class="row">
-        <div class="col s12 m12">
+    <div>
+      <div class="row" ng-repeat="user in mainCtrl.allUsers | filter:searchBox">
+        <div class="col s6 m6 offset-s3 offset-m3">
           <div class="card" id="galleryCss">
             <div class="card-image">
-              <div class="card-content">
-
-                    <h5>{{}}</h5>
-                    <p>{{}}</p>
+              <div ng-click="mainCtrl.getUserAlbums(user.id)" class="card-content">
+                    <h5>@{{user.username}}</h5>
                 </div>
               </div>
              </div>
@@ -33,9 +31,9 @@
       </div>
     </div>
 
-<ul ng-repeat="user in mainCtrl.allUsers | filter:searchBox">
-  <li ng-click="mainCtrl.getUserAlbums(user.id)">@{{user.username}} Id: {{user.id}}</li>
-</ul>
+<!-- <ul ng-repeat="user in mainCtrl.allUsers | filter:searchBox">
+  <li ng-click="mainCtrl.getUserAlbums(user.id)">@{{user.username}}</li>
+</ul> -->
 
 
     <!--==========** PARTIAL FOOTER **===========-->
