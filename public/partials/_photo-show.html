@@ -45,7 +45,7 @@
           </div>
           <div id="container">
             <ul ng-repeat="comment in mainCtrl.thisPhoto.comments">
-              <li>{{comment.created_at | date: 'short' }} - {{comment.body}} @{{comment.username}}</li>
+              <li ng-click="mainCtrl.getUserAlbums(comment.user_id)">@{{comment.username}}: <br> {{comment.body}} </li>
             </ul>
           </div>
         </div>

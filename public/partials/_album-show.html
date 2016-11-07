@@ -9,11 +9,8 @@
           <button ui-sref="home" id="back" class="btn waves-effect waves-light">Go Back</button>
 
           <h4>{{mainCtrl.thisAlbum.title}}</h4>
-          <p>
-            {{mainCtrl.thisAlbum.description}}
-          </p>
-          <h6>{{mainCtrl.thisAlbum.id}}</h6>
-          <h5>Created by: {{mainCtrl.thisAlbumOwner.username}}</h5>
+          <h5>{{mainCtrl.thisAlbum.description}}</h5>
+          <h6>Created by: @{{mainCtrl.thisAlbumOwner.username}}</h6>
           <div ng-if="mainCtrl.isUser">
             <form name="myForm" ng-submit="mainCtrl.uploadPhoto(image,mainCtrl.thisAlbum.id)">
               <label>Title:</label>
