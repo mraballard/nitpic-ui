@@ -32,7 +32,10 @@
 <!-- <div ng-repeat="photo in mainCtrl.thisAlbum.photos"> -->
   <!-- <h6>{{photo.title}}</h6> -->
 
-  <div><img ng-repeat="photo in mainCtrl.thisAlbum.photos" id="albumShowCss" ng-src="{{photo.image_thumb_url}}"
-    ng-click="mainCtrl.showPhoto($index)" alt="{{photo.image_file_name}}"/></div>
+  <div>
+    <h6>{{photo.title}}</h6>
+    <img ng-repeat="photo in mainCtrl.thisAlbum.photos" id="albumShowCss" ng-src="{{photo.image_thumb_url}}"
+    ng-click="mainCtrl.showPhoto($index)" alt="{{photo.image_file_name}}"/>
+  </div>
 
 <!-- </div> -->
