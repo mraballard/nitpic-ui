@@ -53,7 +53,14 @@ body {
   border: 1px solid white;
 
 }
-
+#albumTitleHov {
+  cursor: pointer;
+  color:blue;
+}
+#albumTitleHov:hover {
+  cursor: pointer;
+  color:teal;
+}
 .portText {
   font-family: 'Shadows Into Light', cursive;
   font-size: 2em;
