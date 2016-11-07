@@ -21,8 +21,15 @@ Contributers:
 ---
 
 ## App Overview
-Users will be able to register and create albums and photos. Albums and photos will need to be named and described by their owners. Users will be able to view other user's' albums. Maybe users can comment on photos, or either up/down vote them.
 
+A photo-sharing app where users can explore other users' albums and photos, create photo albums, upload photos to albums and leave comment on photos. A guest user can browse users' albums and photos, and create an account in order to create their own albums. Logging in allows for creating of albums, photos and commenting on photos.
+
+Technologies used:
+  Authorization - JWT, bcrypt
+  Backend - Rails
+  Frontend - AngularJS, Javascript, Materialize (CSS framework)
+  Photo Upload - Paperclip
+  
 ## Data Model
 ![data model](img/data-erd.png)
 
