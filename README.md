@@ -2,6 +2,8 @@
 ##### a photosharing app
 (not that there arent already a crap ton)
 
+[NITPIC - deployed on heroku](https://nitpic-app-ui.herokuapp.com)
+
 [link to api repo](https://github.com/estermer/nitpic-api)
 
 ---
