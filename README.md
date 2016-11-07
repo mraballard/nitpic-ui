@@ -60,3 +60,8 @@ Took most of the morning and afternoon to really nail down the Data modeling for
 
 #### Day 3
 Aaron worked on finishing up the controllers, Sean worked on the angular partials for the layout and som initial views, and Eric worked on getting the AWS S3 and paperclip working to enable photo upload. Today was a long day for all three of us. Aaron expreience problems with getting user authentication to work, sean had merge conflict errors that was duplicating his html and css code. And Eric with getting through uploading a file through first angular to send to the backend and then validate it to upload it to AWS S3. Both Aaron and Eric got over their hump before they called it a day, Sean had made some decent progress fixing his styles. If user auth is done then the rails API is completed.
+
+TO DO:
+Improve comment style / display
+Improve album show photos display
+
