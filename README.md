@@ -64,7 +64,7 @@ Finalized the views for creating an album, editing the album and deleting the al
 Final touch ups making sure the user interface was put together well. Added some additional features such as a search for the albums within a user and a search for the different users. Fixed errors with pushing the api and front end to Heroku. Deployed the app.
 
 TO DO:
-Improve comment style / display
-Improve album show photos display
-Add thinking / loading bar for upload photo, delete photo etc
+ -Improve comment style / display
+ -Improve album show photos display
+ -Add thinking / loading bar for upload photo, delete photo etc
 
