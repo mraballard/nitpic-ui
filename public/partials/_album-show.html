@@ -26,9 +26,8 @@
 
 <div ng-repeat="photo in mainCtrl.thisAlbum.photos">
   <h6>{{photo.title}}</h6>
-  <img ng-src="{{photo.image_thumb_url}}" ng-click="mainCtrl.showPhoto($index)" alt="{{photo.image_file_name}}" />
-
   <img id="albumShowCss" ng-src="{{photo.image_thumb_url}}"
-    ng-click="mainCtrl.showPhoto($index)" alt="{{photo.image_file_name}}"/></div>
+    ng-click="mainCtrl.showPhoto($index)" alt="{{photo.image_file_name}}"/>
+</div>
 
 <!-- </div> -->

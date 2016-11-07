@@ -5,10 +5,10 @@
   alt="{{mainCtrl.thisPhoto.image_file_name}}" />
 
 <div ng-if="mainCtrl.user" id="container">
-    <form id="createComment" ng-submit="mainCtrl.createComment(newComment, mainCtrl.thisPhoto.id)">
+    <form id="createComment" ng-submit="mainCtrl.createComment(self.newComment, mainCtrl.thisPhoto.id)">
         <div class="input-field">
            <label for="title">Comment</label>
-            <input id="title" type="text" ng-model="newComment.body">
+            <input id="title" type="text" ng-model="self.newComment.body">
         </div>
 
         <button id="newCommentButton" class="btn waves-effect waves-light" type="submit">Add Comment</button>
@@ -16,7 +16,7 @@
 </div>
 <div id="container">
   <ul ng-repeat="comment in mainCtrl.thisPhoto.comments">
-    <li>{{comment.created_at | date: 'short' }} - {{comment.body}} @{{comment.username}}</li>
+    <li ng-click="mainCtrl.getUserAlbums(comment.user_id)">{{comment.created_at | date: 'short' }} - {{comment.body}} @{{comment.username}}</li>
   </ul>
 
 </div>

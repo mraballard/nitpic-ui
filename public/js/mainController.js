@@ -9,7 +9,6 @@
   function mainController($scope, $http, Upload, $timeout, $state, $stateParams){
     var rootUrl = 'http://localhost:3000';
     var self = this;
-    self.thisAlbum = $stateParams.album
   // ======================================================== //
                   // USERS CONTROLLER //
   // ======================================================== //
@@ -288,11 +287,11 @@
     })
     .then(function(response){
     self.thisPhoto.comments = response.data.comments;
+    newComment.body = "";
     })
     .catch(function(err){
       console.error(err);
     })
-    newComment = "";
   }
 
   self.deleteComment = function(commentId){
