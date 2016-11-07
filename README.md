@@ -64,4 +64,5 @@ Aaron worked on finishing up the controllers, Sean worked on the angular partial
 TO DO:
 Improve comment style / display
 Improve album show photos display
+Add thinking / loading bar for upload photo, delete photo etc
 
